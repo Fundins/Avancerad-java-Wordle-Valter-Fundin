@@ -11,27 +11,36 @@ public class Main {
 
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Start");
+
         //String guess = input.nextLine().toUpperCase();
 
 
         //Skapar ny instans av Count som är klassen som en scoreboard m regler
         Count count = new Count(words);
 
+        //Instansen av count skickas med till konstruktorn i Display + input.
         Display display = new Display(count,input);
-        //System.out.println(guess);
 
-        while (!count.isItOver() || !count.correctGuess()) {
+        //Kollar om spelet är över.
+        while (!count.gameOver()) {
             display.print();
             display.showGuess();
+        }
+
+        display.print();
+
+        if (count.win()) {
+            System.out.println("Grattis du gissade korrekt ord");
+        } else {
+            System.out.println("Du gissade inte korrekt ord");
+        }
+        System.out.println("The answer was " + count.get_word());
 
 
         }
-        display.print();
 
-
-
-
+        public boolean game(){
+         return true;
         }
     }
 
