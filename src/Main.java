@@ -20,11 +20,12 @@ public class Main {
 
         //Instansen av count skickas med till konstruktorn i Display + input.
         Display display = new Display(count,input);
-
+        display.prompt();
         //Kollar om spelet är över.
         while (!count.gameOver()) {
             display.print();
             display.showGuess();
+
         }
 
         display.print();
@@ -38,6 +39,8 @@ public class Main {
 
 
         }
+
+
 
         public boolean game(){
          return true;

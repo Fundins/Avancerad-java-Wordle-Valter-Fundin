@@ -15,21 +15,23 @@ public class Display {
 
         count = _count;
         input = _input;
-        prompt();
+
     }
 
     public void print(){
+
         showAllGuesses();
+        blankGuesses();
     }
 
     public void prompt(){
         System.out.println();
-        System.out.println(BG_GREEN + " - Wordle-Regler!" + BG_RESET);
-        System.out.println(" - Om bokstaven finns i ordet men på fel plats visas den med " +
+        System.out.println(BG_GREEN + "- Wordle-Regler!" + BG_RESET);
+        System.out.println("- Om bokstaven finns i ordet men på fel plats visas den med " +
                 BG_YELLOW + "GUL " + BG_RESET + "Färg");
-        System.out.println(" - Om bokstaven finns i ordet och är på korrekt plats, visas den med " +
+        System.out.println("- Om bokstaven finns i ordet och är på korrekt plats, visas den med " +
                 BG_GREEN + "GRÖN " + BG_RESET + "Färg");
-        System.out.println(" - Om det inte är någon färg så finns inte bokstaven i ordet.");
+        System.out.println("- Om det inte är någon färg så finns inte bokstaven i ordet.");
         System.out.println();
     }
 
@@ -54,14 +56,11 @@ public class Display {
                 b.append("|");
             }
 
-            //b.setLength((b.length() - 1));
+            b.setLength((b.length() - 1));
             System.out.println(b.toString());
+
             b = new StringBuilder();
         }
-
-
-
-
     }
 
 
@@ -76,9 +75,24 @@ public class Display {
             if (guess.length() != count.get_word().length()) {
                 System.out.println("Skriv in ett ord med " + count.get_word().length() + " bokstäver.");
             } else {
+
                 count.guess(guess);
+
                 return guess;
             }
+        }
+    }
+
+    //Publicerar tomma rutor för att se antal försök kvar.
+    public void blankGuesses() {
+        StringBuilder b = new StringBuilder();
+        for (int i = 0; i < count.getAttemptsRemaining(); i++) {
+            for (int j = 0; j < count.get_word().length(); j++) {
+                b.append("_|");
+            }
+            b.setLength(b.length() - 1);
+            System.out.println(b.toString());
+            b = new StringBuilder();
         }
     }
 
