@@ -7,7 +7,7 @@ public class Count {
     List<String> guesses;
     private final int attempts;
     private int remainingAttempts;
-    private final String word;
+    private String word;
 
     public Count(String[] words){
 
@@ -24,26 +24,28 @@ public class Count {
     }
 
     public void guess(String str) {
+        if (str.length() == word.length()) {
             guesses.add(str);
             remainingAttempts--;
+        }
     }
 
     public boolean isItOver(){
         return remainingAttempts == 0;
 
     }
-    public boolean correctGuess(){
-        return guesses.contains(word);
+
+    public boolean gameOver () {
+        return remainingAttempts == 0 || guesses.contains(word);
     }
 
     public String get_word(){
         return word;
     }
-    public int get_attempts_left(){
-        return attempts - remainingAttempts;
+
+    public boolean win() {
+        return guesses.contains(word);
     }
-
-
 
 
 }

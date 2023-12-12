@@ -15,16 +15,25 @@ public class Display {
 
         count = _count;
         input = _input;
+        prompt();
     }
 
     public void print(){
         showAllGuesses();
+    }
 
-
+    public void prompt(){
+        System.out.println();
+        System.out.println(BG_GREEN + " - Wordle-Regler!" + BG_RESET);
+        System.out.println(" - Om bokstaven finns i ordet men på fel plats visas den med " +
+                BG_YELLOW + "GUL " + BG_RESET + "Färg");
+        System.out.println(" - Om bokstaven finns i ordet och är på korrekt plats, visas den med " +
+                BG_GREEN + "GRÖN " + BG_RESET + "Färg");
+        System.out.println(" - Om det inte är någon färg så finns inte bokstaven i ordet.");
+        System.out.println();
     }
 
     public void showAllGuesses(){
-
 
         StringBuilder b = new StringBuilder();
         for (String svar : count.guesses) {
@@ -61,7 +70,7 @@ public class Display {
     public String showGuess(){
 
         while (true){
-            System.out.println("Skriv in ett ord");
+            System.out.print("Skriv in ett ord: ");
             String guess = input.nextLine().toUpperCase();
 
             if (guess.length() != count.get_word().length()) {
