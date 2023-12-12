@@ -18,12 +18,13 @@ public class Display {
 
     }
 
+    //Printar alla gissninar gjord, och hur många gissninar det är kvar.
     public void print(){
-
         showAllGuesses();
         blankGuesses();
     }
 
+    //regler och start prompt.
     public void prompt(){
         System.out.println();
         System.out.println(BG_GREEN + "- Wordle-Regler!" + BG_RESET);
@@ -35,8 +36,15 @@ public class Display {
         System.out.println();
     }
 
+    //Alla gissningar gjorda.
     public void showAllGuesses(){
 
+        //Delar upp svaren i mindre delar.
+        //Först hämtas alla svar/inputs och läggs i en string med en for-loop.
+        //Sedan en till for-loop för varje bokstav i det hämtade svaret.
+        //Där matchas den igenom alla char mot alla char i det korrekta svaret.
+        //Så om bokstaven matchar blir det grönt, inte matchar men finns i ordet så blir det gult osv.
+        //Allt sätts sedan ihop med en stringbuilder.
         StringBuilder b = new StringBuilder();
         for (String svar : count.guesses) {
 
@@ -56,7 +64,7 @@ public class Display {
                 b.append("|");
             }
 
-            b.setLength((b.length() - 1));
+
             System.out.println(b.toString());
 
             b = new StringBuilder();
@@ -75,22 +83,20 @@ public class Display {
             if (guess.length() != count.get_word().length()) {
                 System.out.println("Skriv in ett ord med " + count.get_word().length() + " bokstäver.");
             } else {
-
                 count.guess(guess);
-
                 return guess;
             }
         }
     }
 
     //Publicerar tomma rutor för att se antal försök kvar.
+    //Samma funktionallitet som funktionen showAllGuesses
     public void blankGuesses() {
         StringBuilder b = new StringBuilder();
         for (int i = 0; i < count.getAttemptsRemaining(); i++) {
             for (int j = 0; j < count.get_word().length(); j++) {
                 b.append("_|");
             }
-            b.setLength(b.length() - 1);
             System.out.println(b.toString());
             b = new StringBuilder();
         }

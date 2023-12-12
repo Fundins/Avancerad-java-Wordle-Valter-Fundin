@@ -17,15 +17,17 @@ public class Main {
                 //Instansen av count skickas med till konstruktorn i Display + input.
                 Display display = new Display(count,input);
                 display.prompt();
-                //Kollar om spelet är över.
+
+                //Loop som kollar om spelet är över.
+               //Annars fortsätter den att printa spelet.
                 while (!count.gameOver()) {
                     display.print();
                     display.showGuess();
 
                 }
-
                 display.print();
 
+                //Kollar hur spelet avslutades. Antingen rätt gissat eller slut på försök.
                 if (count.win()) {
                     System.out.println("Grattis du gissade korrekt ord");
                 } else {
@@ -33,6 +35,7 @@ public class Main {
                 }
                 System.out.println("Svaret var " + count.get_word());
 
+                //Kollar om användaren vill spela om spelet.
                 System.out.println("Tryck 'y' för att spela igen");
                 System.out.println("Tryck 'n' för att avsluta");
                 String ans = input.nextLine().toLowerCase();
