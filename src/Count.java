@@ -5,19 +5,20 @@ import java.util.Random;
 public class Count {
 
     List<String> guesses;
-    private  int attempts;
+    private final int attempts;
     private int remainingAttempts;
-    private String word;
+    private final String word;
 
     public Count(String[] words){
+
         word = words[new Random().nextInt(words.length)].toUpperCase(); //Hämtar ett ord
         guesses = new ArrayList<String>();
         attempts = word.length();
         remainingAttempts = attempts;
     }
 
-    public void populateGuess(){
-        for(int i =0; i < 5; i++){
+    public void printGuess(){
+        for(int i =0; i < guesses.size(); i++){
             guesses.add("-");
         }
     }
@@ -35,10 +36,10 @@ public class Count {
         return guesses.contains(word);
     }
 
-    public String get_Word(){
+    public String get_word(){
         return word;
     }
-    public int get_attempts(){
+    public int get_attempts_left(){
         return attempts - remainingAttempts;
     }
 
