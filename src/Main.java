@@ -1,36 +1,39 @@
+import java.awt.*;
+import java.util.Random;
 import java.util.Scanner;
-/*
-  Rules
-  A random 5-letter word is selected from a word bank
-  The user will have 6 attempts to guess the word correctly
-  If the word guessed has a letter in the correct place, the letter will be presented as green
-  If the word guessed has a letter that is contained in the answer but the wrong place, the letter will be presented as yellow
-  If the letter is not contained in the answer, it will be presented as white
-*/
+
 public class Main {
     public static void main(String[] args) {
 
-        //Färger
-         final String BG_RESET = "\u001B[0m"; //Normal färg.
-         final String BG_GREEN = "\u001B[32m";
-         final String BG_YELLOW = "\u001B[33m";
-
-        System.out.println("Wordle");
-        System.out.println("Du har 6 Försök på dig");
 
 
 
+
+
+        //Orden i spelet
         String[] words = {"SHAKE","SHARE","PANIC","AMUSE","SHADE"};
-        int index = (int) (Math.random() * words.length);
-        String correct = words[index];
-        String guess ="";
-        //Gissningar
-        for(int round=0;round<6;round++) {
-            System.out.println("Försök: " + (round+1));
-            System.out.print("Gissa ordet. > ");
-            Scanner sc = new Scanner(System.in);
 
-             guess = sc.nextLine().toUpperCase();
+
+
+        Scanner input = new Scanner(System.in);
+        String guess = input.nextLine().toUpperCase();
+
+        //Skapar ny instans av Count som är klassen som en scoreboard m regler
+        Count count = new Count(words);
+
+        Display display = new Display(count,input,guess);
+        System.out.println("Hello Worlds");
+
+        while (!count.isItOver() || !count.correctGuess()) {
+            display.print();
+            display.showGuess();
+
+
+        }
+        display.print();
+
+       /* for(int round=0;round<6;round++) {
+
 
 
             for (int i = 0; i < 5; i++) {
@@ -56,8 +59,50 @@ public class Main {
         }
         if(!guess.equals(correct)){
             System.out.println("Game Failed. Prova igen type y");
+        } */
+
+
+
+
+
+
+
+/*
+        //Sätter alla ord i en array(String)
+        String[] words = {"HELLO", "WORLD", "LEARN", "CRATE"};
+        int index = (int) (Math.random() * words.length);
+        //Genererar ett random ord, = index i Listan.
+        String svar = words[index].toUpperCase();
+        //String answer = words[new Random().nextInt(words.length)].toUpperCase();
+
+        //Skickar med array med ord till konsturktorn Board
+        //Board board = new Board(words);
+        Board board = new Board(svar);
+
+        //Scanner
+        Scanner input = new Scanner(System.in);
+
+        Presentation p = new Presentation(board, input);
+
+        //While loop som kollar om spelet är över.
+        while (!board.isGameOver()) {
+            p.print();
+            //p.promptGuess();
+        }
+        p.print();
+
+        //När spelet är över, antingen om slut på gissningar eller korrekt svar.
+        //Så printas diverse svar.
+        if (board.didWin()) {
+            System.out.println("Congratulations, you guessed correctly");
+        } else {
+            System.out.println("Sorry, you did not guess correctly");
+        }
+        System.out.println("The answer was " + svar);
+        //input.close();
         }
 
+        */
         }
     }
 
