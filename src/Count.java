@@ -17,10 +17,8 @@ public class Count {
         remainingAttempts = attempts;
     }
 
-    public void printGuess(){
-        for(int i =0; i < guesses.size(); i++){
-            guesses.add("-");
-        }
+    public int getAttemptsRemaining() {
+        return remainingAttempts;
     }
 
     public void guess(String str) {
